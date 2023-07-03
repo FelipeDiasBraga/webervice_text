@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  api_crud:
+    build: .
+    restart: always
+    ports:
+      - "9191:9191"
+    image: api_crud
+    container_name: api_crud
+    healthcheck:
+      disable: true
