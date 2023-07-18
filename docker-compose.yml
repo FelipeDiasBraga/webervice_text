@@ -8,5 +8,3 @@ services:
       - "9191:9191"
     image: api_crud
     container_name: api_crud
-    healthcheck:
-      disable: true
