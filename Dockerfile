@@ -11,6 +11,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+
 WORKDIR /app_crud
 
 CMD ["python3", "-u", "/main.py"]

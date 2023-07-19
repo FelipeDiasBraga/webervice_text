@@ -15,9 +15,11 @@ def get_connect():
 
 
 def save_user(name=None, email=None, senha=None):
+
     with get_connect() as conn:
         cur = conn.cursor()
-        cur.execute("INSERT INTO cadastro (nome, email, senha) VALUES (%s, %s, %s);", (name, email, senha))
+        select = f"INSERT INTO public.cadastro (nome, email, senha) VALUES ('{name}', '{email}', '{senha}');"
+        cur.execute(select)
         conn.commit()
 
         return True
@@ -34,3 +36,10 @@ def get_table_carros():
 
     return car
 
+
+def get_dados_vadildate():
+    with get_connect() as conn:
+        cur = conn.cursor(cursor_factory=DictCursor)
+        cur.execute(f"SELECT nome from public.cadastro;")
+        dados = cur.fetchall()
+        print(dados)

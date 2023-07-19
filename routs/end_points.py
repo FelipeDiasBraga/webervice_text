@@ -1,4 +1,5 @@
 from Database.user_sql import get_table_carros as car
+from Database.user_sql import get_dados_vadildate as valid
 from Database.user_sql import save_user as user
 from flask import Blueprint, jsonify, request
 
@@ -7,9 +8,10 @@ user_routes = Blueprint("user", __name__, url_prefix="/user")
 
 @user_routes.route("/get_usuario/", methods=['POST'])
 def get_user():
-    name = request.args.get("name", None, str)
-    email = request.args.get("email", None, str)
-    senha = request.args.get("senha", None, str)
+    args = request.get_json()
+    name = args.get("name", None)
+    email = args.get("email", None)
+    senha = args.get("senha", None)
 
     usuario = user(name, email, senha)
 
